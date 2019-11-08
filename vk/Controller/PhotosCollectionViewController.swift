@@ -12,6 +12,8 @@ private let reuseIdentifier = "Cell"
 
 class PhotosCollectionViewController: UICollectionViewController {
 
+//    var likeControl: LikeControl = LikeControl()
+    
     private let photos = [
         UIImage(named: "lera1"),
         UIImage(named: "lera2"),
@@ -25,8 +27,20 @@ class PhotosCollectionViewController: UICollectionViewController {
         UIImage(named: "lera10")
     ]
 
+//    @objc func likedChanged(){
+//       print("like")
+//    }
+    
     // MARK: UICollectionViewDataSource
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+//        likeControl.addTarget(self, action: #selector(likedChanged), for: .valueChanged)
+        
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1

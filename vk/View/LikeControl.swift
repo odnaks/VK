@@ -10,41 +10,58 @@ import UIKit
 
 class LikeControl: UIControl {
 
-     override func draw(_ rect: CGRect) {
-            // Drawing code
+    @IBOutlet weak var counterLabel: UILabel!
+    var isLiked: Bool = false
+    var countLikes: Int = 99
+    
+    override func draw(_ rect: CGRect) {
             super.draw(rect)
-            guard let context = UIGraphicsGetCurrentContext() else { return }
-            context.saveGState()
+        
+            let path = UIBezierPath()
+            let sideOne = rect.width * 0.4
+            let sideTwo = rect.height * 0.3
+            let arcRadius = sqrt(sideOne*sideOne + sideTwo*sideTwo)/2
             
-            context.move(to: CGPoint(x: 0, y: 0))
-            context.addLine(to: CGPoint(x: rect.width, y: 0))
-            context.addLine(to: CGPoint(x: rect.width, y: rect.height))
-            context.addLine(to: CGPoint(x: 0, y: rect.height))
-            context.closePath()
+            path.addArc(withCenter: CGPoint(x: rect.width * 0.3, y: rect.height * 0.35), radius: arcRadius, startAngle: 135.degreesToRadians, endAngle: 315.degreesToRadians, clockwise: true)
 
-            context.setStrokeColor(UIColor.black.cgColor)
-            context.strokePath()
+            path.addLine(to: CGPoint(x: rect.width/2, y: rect.height * 0.2))
 
-            context.restoreGState()
-            
-            //layer.masksToBounds = true
-    //        let maskLayer = CAShapeLayer()
-    //        let path = UIBezierPath(arcCenter: CGPoint(x: rect.width / 2, y: rect.height / 2),
-    //        radius: 100, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: false)
-    //
-    //        path.lineWidth = 5
-    //        let color = UIColor.red
-    //        color.setStroke()
-    //        path.stroke()
-    //
-    //        maskLayer.path = path.cgPath // Тот path, с помощью которого рисовали звезду
-            
-    //        layer.masksToBounds = true
-           // layer.cornerRadius = 12
-          
-            
-    //        layer.mask = maskLayer
+            path.addArc(withCenter: CGPoint(x: rect.width * 0.7, y: rect.height * 0.35), radius: arcRadius, startAngle: 225.degreesToRadians, endAngle: 45.degreesToRadians, clockwise: true)
+
+            path.addLine(to: CGPoint(x: rect.width * 0.5, y: rect.height * 0.95))
+
+            path.close()
+            UIColor.red.setStroke()
+            path.stroke()
+            if (isLiked)
+            {
+                UIColor.red.setFill()
+                path.fill()
+            }
+
         }
-
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let gr = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
+        addGestureRecognizer(gr)
+        counterLabel.text = String(countLikes)
+        
+    }
+    
+   @objc func likeTapped(){
+        print("likeTapped")
+        isLiked = !isLiked
+        if (isLiked)
+        {
+            countLikes = countLikes + 1
+        }
+        else {
+            countLikes = countLikes - 1
+        }
+        counterLabel.text = String(countLikes)
+        setNeedsDisplay()
+    }
 
 }
+

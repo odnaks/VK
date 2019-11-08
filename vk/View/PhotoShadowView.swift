@@ -12,16 +12,17 @@ import UIKit
 class PhotoShadowView: UIView {
 
      override func draw(_ rect: CGRect) {
-            // Drawing code
             super.draw(rect)
-//            guard let context = UIGraphicsGetCurrentContext() else { return }
-            
-            layer.masksToBounds = false
-            layer.shadowColor = UIColor.black.cgColor
-            layer.shadowOffset = .zero
-            layer.shadowRadius = 5
-            layer.shadowOpacity = 1
-            
-        }
-
+        
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = .zero
+        self.layer.shadowRadius = 5
+        self.layer.shadowOpacity = 1
+    }
 }
