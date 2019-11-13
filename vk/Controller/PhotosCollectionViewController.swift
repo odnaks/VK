@@ -12,51 +12,31 @@ private let reuseIdentifier = "Cell"
 
 class PhotosCollectionViewController: UICollectionViewController {
 
-//    var likeControl: LikeControl = LikeControl()
+    var friend: User!
     
-    private let photos = [
-        UIImage(named: "lera1"),
-        UIImage(named: "lera2"),
-        UIImage(named: "lera3"),
-        UIImage(named: "lera4"),
-        UIImage(named: "lera5"),
-        UIImage(named: "lera6"),
-        UIImage(named: "lera7"),
-        UIImage(named: "lera8"),
-        UIImage(named: "lera9"),
-        UIImage(named: "lera10")
-    ]
-
-//    @objc func likedChanged(){
-//       print("like")
-//    }
-    
-    // MARK: UICollectionViewDataSource
+    // MARK: viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-//        likeControl.addTarget(self, action: #selector(likedChanged), for: .valueChanged)
+        assert(friend != nil)
         
-//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        title = "\(friend.firstName) \(friend.lastName)"
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return photos.count
+        return friend.photos!.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { preconditionFailure() }
     
         // Configure the cell
-        cell.photoImageView.image = photos[indexPath.item]
+        cell.photoImageView.image = friend.photos![indexPath.item]
     
         return cell
     }

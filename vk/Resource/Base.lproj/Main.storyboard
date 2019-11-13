@@ -216,7 +216,7 @@
                                     <outlet property="photoImageView" destination="0hC-l2-cbF" id="spN-kv-NcB"/>
                                     <outlet property="photoShadowVIew" destination="T2o-mE-MPL" id="3CH-Ef-wpc"/>
                                     <outlet property="photoView" destination="LtO-Y9-0Ql" id="djC-kL-eSS"/>
-                                    <segue destination="l3a-Ec-TCi" kind="show" id="dU3-Qf-ZU9"/>
+                                    <segue destination="l3a-Ec-TCi" kind="show" identifier="toPhotos" id="dU3-Qf-ZU9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
