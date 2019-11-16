@@ -27,6 +27,12 @@ class ListFriendsTableViewController: UITableViewController {
         ),
         User(photo: UIImage(named: "roma1")!, firstName: "roma", lastName: "politov",
              photos: [
+                UIImage(named: "roma3")!,
+                 UIImage(named: "roma2")!
+            ]
+        ),
+        User(photo: UIImage(named: "roma1")!, firstName: "ne_roma", lastName: "politov",
+             photos: [
                 UIImage(named: "roma1")!,
                  UIImage(named: "roma2")!,
                  UIImage(named: "roma3")!,
@@ -42,7 +48,7 @@ class ListFriendsTableViewController: UITableViewController {
                 UIImage(named: "roma13")!
             ]
         ),
-        User(photo: UIImage(named: "dasha")!, firstName: "dasha", lastName: "kotava",
+        User(photo: UIImage(named: "dasha")!, firstName: "даруа", lastName: "катава",
              photos: [
                 UIImage(named: "dasha")!,
                  UIImage(named: "dasha2")!,
@@ -55,28 +61,70 @@ class ListFriendsTableViewController: UITableViewController {
         )
     ]
     
+    var sortedUser = [Character: [User]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.sortedUser = sort(users: friends)
     }
 
+    private func sort(users: [User]) -> [Character: [User]] {
+        var userDict = [Character: [User]]()
+        
+        users
+            .sorted { $0.lastName < $1.lastName }
+            .forEach { user in
+            guard let firstChar = user.lastName.first else { return }
+            if var thisCharUsers = userDict[firstChar] {
+                thisCharUsers.append(user)
+                userDict[firstChar] = thisCharUsers
+            } else {
+                userDict[firstChar] = [user]
+            }
+        }
+        
+        return userDict
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return sortedUser.keys.count
     }
 
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        let firstChar = sortedUser.keys.sorted()[section]
+//        return String(firstChar)
+//    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let vw = UIView()
+        //vw.backgroundColor = UIColor.red
+        vw.backgroundColor = tableView.backgroundColor!.withAlphaComponent(0.5)
+
+        let label = UILabel(frame: CGRect(x: 5, y: 0, width: 200, height: 30))
+        label.textColor = .white
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 25)
+        
+        let firstChar = sortedUser.keys.sorted()[section]
+        label.text = String(firstChar)
+        vw.addSubview(label)
+        
+        
+        return vw
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return friends.count
+        let keysSorted = sortedUser.keys.sorted()
+        return sortedUser[keysSorted[section]]?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,13 +132,14 @@ class ListFriendsTableViewController: UITableViewController {
             preconditionFailure("FriendCell cannot be dequeued")
         }
 
-        let firstName = friends[indexPath.row].firstName
-        let lastName = friends[indexPath.row].lastName
-        let photo = friends[indexPath.row].photo
-        cell.firstNameLabel.text = firstName
-        cell.lastNameLabel.text = lastName
-        cell.photoImageView.image = photo
-
+        let firstChar = sortedUser.keys.sorted()[indexPath.section]
+        let users = sortedUser[firstChar]!
+        let user: User = users[indexPath.row]
+        
+        cell.firstNameLabel.text = user.firstName
+        cell.lastNameLabel.text = user.lastName
+        cell.photoImageView.image = user.photo
+        
         return cell
     }
 
@@ -110,7 +159,11 @@ class ListFriendsTableViewController: UITableViewController {
         if segue.identifier == "toPhotos",
         let destinationVC = segue.destination as? PhotosCollectionViewController,
         let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.friend = friends[indexPath.row]
+            let firstChar = sortedUser.keys.sorted()[indexPath.section]
+            let users = sortedUser[firstChar]!
+            let friend: User = users[indexPath.row]
+        
+            destinationVC.friend = friend
         }
     }
 

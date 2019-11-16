@@ -122,6 +122,7 @@
                     <connections>
                         <segue destination="FYE-1k-583" kind="relationship" relationship="viewControllers" id="jgv-ZB-dhl"/>
                         <segue destination="Puz-C0-f5P" kind="relationship" relationship="viewControllers" id="UZ2-ct-aBw"/>
+                        <segue destination="BTW-gW-Bat" kind="relationship" relationship="viewControllers" id="eaY-XB-G2R"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WZc-7T-uiS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -298,6 +299,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mkd-iN-sBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2257.971014492754" y="557.8125"/>
+        </scene>
+        <!--news-->
+        <scene sceneID="2d0-dv-iym">
+            <objects>
+                <tableViewController id="RIi-vx-ZXo" customClass="NewsTableViewController" customModule="vk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KGt-w0-v5r">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="RIi-vx-ZXo" id="GfT-q5-SAB"/>
+                            <outlet property="delegate" destination="RIi-vx-ZXo" id="aTN-GZ-vK0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="news" id="95O-Ak-VrA"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfV-Je-u7E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2258" y="1262"/>
+        </scene>
+        <!--news-->
+        <scene sceneID="9ez-An-ps8">
+            <objects>
+                <navigationController id="BTW-gW-Bat" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="news" image="archivebox.fill" catalog="system" id="f7X-q0-KOc"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="L5v-fa-89e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="RIi-vx-ZXo" kind="relationship" relationship="rootViewController" id="k2e-v3-bDl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xKt-vJ-Yht" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1499" y="1262"/>
         </scene>
         <!--all groups-->
         <scene sceneID="HcF-6I-50g">
@@ -492,6 +530,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="archivebox.fill" catalog="system" width="64" height="52"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
     </resources>
