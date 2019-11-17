@@ -8,9 +8,12 @@
 
 import UIKit
 
-class ListFriendsTableViewController: UITableViewController {
+class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 
-    var friends = [
+    @IBOutlet weak var searchFriends: UISearchBar!
+    var isSearch: Bool = false
+    
+    let friends = [
         User(photo: UIImage(named: "lera")!, firstName: "lera", lastName: "shevtsova",
              photos: [
                 UIImage(named: "lera1")!,
@@ -61,11 +64,37 @@ class ListFriendsTableViewController: UITableViewController {
         )
     ]
     
+//    var seachedFrieds: [User] = []
     var sortedUser = [Character: [User]]()
+    
+    func searchFrieds(friends: [User], str: String) -> [User]{
+        var newFriends: [User] = []
+        
+        for friend in friends {
+            if (friend.firstName.lowercased().contains(str.lowercased()) ||  friend.lastName.lowercased().contains(str.lowercased()) ) {
+                newFriends.append(friend)
+            }
+        }
+        
+        return newFriends
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if (searchText != ""){
+            isSearch = true
+            self.sortedUser = sort(users: searchFrieds(friends: friends, str: searchText))
+        }
+        else{
+            isSearch = false
+            self.sortedUser = sort(users: friends)
+        }
+        print (searchText)
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchFriends.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

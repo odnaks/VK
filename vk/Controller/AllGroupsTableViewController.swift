@@ -7,8 +7,24 @@
 
 import UIKit
 
-class AllGroupsTableViewController: UITableViewController {
+class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
 
+    
+    @IBOutlet weak var searchGroups: UISearchBar!
+    var isSearch: Bool = false
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if (searchText != ""){
+            isSearch = true
+        }
+        else{
+            isSearch = false
+        }
+        print (searchText)
+        newGroups = searchGroups(groups: groups, str: searchText)
+        self.tableView.reloadData()
+    }
+    
     let groups = [
         Group(photo: UIImage(named: "white")!, name: "white public page"),
         Group(photo: UIImage(named: "yellow")!, name: "yellow public page"),
@@ -16,10 +32,22 @@ class AllGroupsTableViewController: UITableViewController {
         Group(photo: UIImage(named: "dark")!, name: "dark public page"),
         Group(photo: UIImage(named: "grey")!, name: "grey public page")
     ]
+    var newGroups:[Group] = []
 
+    func searchGroups(groups: [Group], str: String) -> [Group] {
+        var newGroups: [Group] = []
+        for group in groups {
+            if group.name.lowercased().contains(str.lowercased()){
+                newGroups.append(group)
+            }
+        }
+        return newGroups
+    }
+    
     override func viewDidLoad() {
             super.viewDidLoad()
 
+        searchGroups.delegate = self
             // Uncomment the following line to preserve selection between presentations
             // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,7 +64,14 @@ class AllGroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return groups.count
+        
+        if (isSearch)
+        {
+            return newGroups.count
+        }
+        else {
+            return groups.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,8 +79,18 @@ class AllGroupsTableViewController: UITableViewController {
             preconditionFailure("GroupCell cannot be dequeued")
         }
 
-        let name = groups[indexPath.row].name
-        let photo = groups[indexPath.row].photo
+        let name: String
+        let photo: UIImage?
+        if (isSearch)
+        {
+            name = newGroups[indexPath.row].name
+            photo = newGroups[indexPath.row].photo
+        }
+        else {
+            name = groups[indexPath.row].name
+            photo = groups[indexPath.row].photo
+        }
+        
         cell.titleLabel.text = name
         cell.photoImageView.image = photo
 

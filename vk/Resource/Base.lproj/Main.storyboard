@@ -138,9 +138,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="E3Z-l9-M9N">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="121" id="o22-HS-3IC" customClass="FriendCell" customModule="vk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="121"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="121"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o22-HS-3IC" id="8xK-RP-BOq">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="121"/>
@@ -227,10 +232,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="my friends" id="YeL-I3-dyQ"/>
+                    <connections>
+                        <outlet property="searchFriends" destination="E3Z-l9-M9N" id="E9H-wK-8YJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cy3-24-nGy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257.971014492754" y="-137.27678571428569"/>
+            <point key="canvasLocation" x="2258" y="-706"/>
         </scene>
         <!--my groups-->
         <scene sceneID="YuT-g1-Pk5">
@@ -241,9 +249,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="ryi-X0-9Xs">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="uNg-Nh-Jeo" customClass="GroupCell" customModule="vk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="62.5"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="62.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uNg-Nh-Jeo" id="J9P-ap-A3L">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="62.5"/>
@@ -295,10 +308,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchGroups" destination="ryi-X0-9Xs" id="qyI-YK-jha"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mkd-iN-sBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257.971014492754" y="557.8125"/>
+            <point key="canvasLocation" x="2258" y="118"/>
         </scene>
         <!--news-->
         <scene sceneID="2d0-dv-iym">
@@ -318,7 +334,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfV-Je-u7E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2258" y="1262"/>
+            <point key="canvasLocation" x="2258" y="887"/>
         </scene>
         <!--news-->
         <scene sceneID="9ez-An-ps8">
@@ -335,7 +351,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKt-vJ-Yht" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1499" y="1262"/>
+            <point key="canvasLocation" x="1499" y="887"/>
         </scene>
         <!--all groups-->
         <scene sceneID="HcF-6I-50g">
@@ -348,9 +364,19 @@
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" id="ljN-ml-iSM">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="63" id="Wsl-G7-BWx" customClass="GroupCell" customModule="vk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="63"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wsl-G7-BWx" id="Mrd-8e-xwf">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="63"/>
@@ -396,11 +422,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="all groups" id="S6a-0I-qkf"/>
+                    <connections>
+                        <outlet property="searchGroups" destination="ljN-ml-iSM" id="xQA-55-6h7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iyj-k0-uV6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="hIA-2h-STA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3011.594202898551" y="557.8125"/>
+            <point key="canvasLocation" x="3012" y="118"/>
         </scene>
         <!--photos-->
         <scene sceneID="h4P-3q-Xfy">
@@ -488,7 +517,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1me-tN-EFe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3013.04347826087" y="-137.27678571428569"/>
+            <point key="canvasLocation" x="3012" y="-706"/>
         </scene>
         <!--friends-->
         <scene sceneID="yJ9-kA-M9U">
@@ -507,7 +536,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVq-Qa-a7q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1499" y="-137"/>
+            <point key="canvasLocation" x="1499" y="-706"/>
         </scene>
         <!--groups-->
         <scene sceneID="GCb-mh-3Rz">
@@ -526,7 +555,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8K-eH-6DJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1499" y="559"/>
+            <point key="canvasLocation" x="1499" y="118"/>
         </scene>
     </scenes>
     <resources>
