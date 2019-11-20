@@ -14,6 +14,11 @@ class LoginController: UIViewController {
     @IBOutlet weak var passInput: UITextField!
     @IBOutlet weak var loginInput: UITextField!
 
+    @IBOutlet var oneLoad: UIView!
+    @IBOutlet var twoLoad: UIView!
+    @IBOutlet var threeLoad: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Жест нажатия
@@ -22,6 +27,49 @@ class LoginController: UIViewController {
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
     }
 
+    func animate_rev(){
+        UIView.animate(withDuration: 0.15, delay: 0, animations: {
+            self.oneLoad.alpha = 1
+        }, completion:
+            { _ in
+                UIView.animate(withDuration: 0.15, delay: 0, animations: {
+                    self.twoLoad.alpha = 1
+                }, completion:
+                    {
+                        _ in
+                        UIView.animate(withDuration: 0.15, delay: 0, animations: {
+                            self.threeLoad.alpha = 1
+                        }, completion: { _ in
+                            self.animate() })
+                })
+        })
+    }
+    
+    func animate(){
+        UIView.animate(withDuration: 0.15, delay: 0, animations: {
+            self.oneLoad.alpha = 0
+        }, completion:
+            { _ in
+                UIView.animate(withDuration: 0.15, delay: 0, animations: {
+                    self.twoLoad.alpha = 0
+                }, completion:
+                    {
+                        _ in
+                        UIView.animate(withDuration: 0.15, delay: 0, animations: {
+                            self.threeLoad.alpha = 0
+                        }, completion: { _ in
+                            
+                            self.animate_rev()
+                            
+                        })
+                })
+        })
+    }
+    
+    func downloadAnimate(){
+        animate()
+    }
+    
     @IBAction func loginButtonPressed(_ sender: Any) {
         let login = loginInput.text!
         let password = passInput.text!
@@ -68,4 +116,8 @@ class LoginController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        downloadAnimate()
+    }
+    
 }

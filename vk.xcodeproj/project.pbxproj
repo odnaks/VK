@@ -30,6 +30,7 @@
 		5EB44F5A2369B2BC006B241D /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB44F592369B2BC006B241D /* PhotoCell.swift */; };
 		5EC70A36236DD59700809C76 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC70A35236DD59700809C76 /* PhotoView.swift */; };
 		5EC70A38236DD9CA00809C76 /* PhotoShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC70A37236DD9CA00809C76 /* PhotoShadowView.swift */; };
+		5EC7AF5B238552B80031E070 /* DownloadCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7AF5A238552B80031E070 /* DownloadCircleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		5EB44F592369B2BC006B241D /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		5EC70A35236DD59700809C76 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		5EC70A37236DD9CA00809C76 /* PhotoShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoShadowView.swift; sourceTree = "<group>"; };
+		5EC7AF5A238552B80031E070 /* DownloadCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadCircleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				5E6F7A6B2374FC0B009D872F /* LikeControl.swift */,
 				5E196F1A23759BFD00A6429E /* LikeExtension.swift */,
 				5EC70A35236DD59700809C76 /* PhotoView.swift */,
+				5EC7AF5A238552B80031E070 /* DownloadCircleView.swift */,
 				5EC70A37236DD9CA00809C76 /* PhotoShadowView.swift */,
 			);
 			path = View;
@@ -222,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EC7AF5B238552B80031E070 /* DownloadCircleView.swift in Sources */,
 				5E196F1B23759BFD00A6429E /* LikeExtension.swift in Sources */,
 				5E9011122369B991006D36E1 /* User.swift in Sources */,
 				5E8C1C372367B058000C48B9 /* LoginController.swift in Sources */,

@@ -29,7 +29,6 @@
                                         <rect key="frame" x="114.5" y="289.5" width="185" height="35"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="Vzn-YB-XDJ"/>
                                             <constraint firstAttribute="height" constant="35" id="dRN-CM-6E6"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -68,16 +67,58 @@
                                             <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZoR-bQ-8M1"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ad2-fq-X90">
+                                        <rect key="frame" x="30" y="547" width="354" height="200"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fy-cg-qRv" customClass="DownloadCircleView" customModule="vk" customModuleProvider="target">
+                                                <rect key="frame" x="169" y="92" width="16" height="16"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="16" id="31S-nG-qPi"/>
+                                                    <constraint firstAttribute="height" constant="16" id="XWQ-eW-a4k"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVy-TQ-gMW" customClass="DownloadCircleView" customModule="vk" customModuleProvider="target">
+                                                <rect key="frame" x="197" y="92" width="16" height="16"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="16" id="V3E-gb-TrB"/>
+                                                    <constraint firstAttribute="height" constant="16" id="csT-OI-r4f"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMe-4Y-srK" customClass="DownloadCircleView" customModule="vk" customModuleProvider="target">
+                                                <rect key="frame" x="141" y="92" width="16" height="16"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="16" id="hhF-C2-ahr"/>
+                                                    <constraint firstAttribute="height" constant="16" id="vVQ-fh-Kau"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="lVy-TQ-gMW" firstAttribute="centerY" secondItem="Ad2-fq-X90" secondAttribute="centerY" id="1RG-v5-Ssc"/>
+                                            <constraint firstItem="1fy-cg-qRv" firstAttribute="leading" secondItem="mMe-4Y-srK" secondAttribute="trailing" constant="12" id="8gh-qi-c3b"/>
+                                            <constraint firstItem="1fy-cg-qRv" firstAttribute="centerY" secondItem="Ad2-fq-X90" secondAttribute="centerY" id="KFR-dP-Xa0"/>
+                                            <constraint firstItem="1fy-cg-qRv" firstAttribute="centerX" secondItem="Ad2-fq-X90" secondAttribute="centerX" id="NP5-xH-K88"/>
+                                            <constraint firstAttribute="height" constant="200" id="Rq4-LS-rdj"/>
+                                            <constraint firstItem="lVy-TQ-gMW" firstAttribute="leading" secondItem="1fy-cg-qRv" secondAttribute="trailing" constant="12" id="U7J-1N-QL6"/>
+                                            <constraint firstItem="mMe-4Y-srK" firstAttribute="centerY" secondItem="Ad2-fq-X90" secondAttribute="centerY" id="zgO-iC-ZxR"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="fAa-cE-Vxd" firstAttribute="leading" secondItem="tVR-j9-olt" secondAttribute="leading" constant="114.5" id="9yL-8W-Amj"/>
                                     <constraint firstItem="oGy-UC-CHk" firstAttribute="top" secondItem="fAa-cE-Vxd" secondAttribute="bottom" constant="25" id="Ggu-P8-hdm"/>
                                     <constraint firstItem="wi6-hh-iih" firstAttribute="centerX" secondItem="fAa-cE-Vxd" secondAttribute="centerX" id="NNr-MJ-kXe"/>
                                     <constraint firstItem="wi6-hh-iih" firstAttribute="top" secondItem="xej-zw-yFF" secondAttribute="top" constant="80" id="QdR-0L-szM"/>
                                     <constraint firstAttribute="bottom" secondItem="wi6-hh-iih" secondAttribute="bottom" constant="381" id="RR4-DV-2o6"/>
                                     <constraint firstItem="oGy-UC-CHk" firstAttribute="width" secondItem="fAa-cE-Vxd" secondAttribute="width" id="UPN-r6-hqI"/>
+                                    <constraint firstItem="Ad2-fq-X90" firstAttribute="top" secondItem="mQs-AG-LrX" secondAttribute="bottom" constant="46" id="XFg-7F-7Yu"/>
                                     <constraint firstItem="wi6-hh-iih" firstAttribute="centerX" secondItem="oGy-UC-CHk" secondAttribute="centerX" id="cmf-lP-CUf"/>
                                     <constraint firstItem="mQs-AG-LrX" firstAttribute="top" secondItem="oGy-UC-CHk" secondAttribute="bottom" constant="76" id="f5V-fJ-on7"/>
                                     <constraint firstItem="wi6-hh-iih" firstAttribute="centerX" secondItem="xej-zw-yFF" secondAttribute="centerX" id="gUd-ju-5QD"/>
+                                    <constraint firstItem="Ad2-fq-X90" firstAttribute="leading" secondItem="7XC-kp-V30" secondAttribute="leading" constant="30" id="hqi-Cx-alq"/>
+                                    <constraint firstItem="tVR-j9-olt" firstAttribute="trailing" secondItem="Ad2-fq-X90" secondAttribute="trailing" constant="30" id="kNn-uF-p9Z"/>
                                     <constraint firstItem="wi6-hh-iih" firstAttribute="centerX" secondItem="7XC-kp-V30" secondAttribute="centerX" id="mgL-ca-HWg"/>
                                     <constraint firstItem="wi6-hh-iih" firstAttribute="centerX" secondItem="mQs-AG-LrX" secondAttribute="centerX" id="q53-lW-9Vb"/>
                                     <constraint firstItem="fAa-cE-Vxd" firstAttribute="top" secondItem="wi6-hh-iih" secondAttribute="bottom" constant="146" id="sE0-5z-GrD"/>
@@ -97,14 +138,17 @@
                     </view>
                     <connections>
                         <outlet property="loginInput" destination="fAa-cE-Vxd" id="I3v-eN-X8L"/>
+                        <outlet property="oneLoad" destination="mMe-4Y-srK" id="0eQ-n4-8Zd"/>
                         <outlet property="passInput" destination="oGy-UC-CHk" id="ctW-wn-Z1y"/>
                         <outlet property="scrollView" destination="7XC-kp-V30" id="Uxz-v1-Jz1"/>
+                        <outlet property="threeLoad" destination="lVy-TQ-gMW" id="UGw-60-LCk"/>
+                        <outlet property="twoLoad" destination="1fy-cg-qRv" id="B1R-n1-PQz"/>
                         <segue destination="dEa-hC-B7a" kind="show" identifier="Login Segue" id="s6m-fs-Xyx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-59" y="118"/>
+            <point key="canvasLocation" x="-59.420289855072468" y="117.85714285714285"/>
         </scene>
         <!--menu-->
         <scene sceneID="jwu-hb-ygU">
