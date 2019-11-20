@@ -21,12 +21,15 @@ class PhotosCollectionViewController: UICollectionViewController {
         assert(friend != nil)
         
         title = "\(friend.firstName) \(friend.lastName)"
+        
+        
+        
+        
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friend.photos!.count
