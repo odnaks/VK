@@ -18,7 +18,7 @@ class PhotosCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        assert(friend != nil)
+//        assert(friend != nil)
         
         title = "\(friend.firstName) \(friend.lastName)"
         

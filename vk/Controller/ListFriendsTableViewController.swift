@@ -186,12 +186,13 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPhotos",
-        let destinationVC = segue.destination as? PhotosCollectionViewController,
+        let destinationVC = segue.destination as? FriendsPhotosViewController,
         let indexPath = tableView.indexPathForSelectedRow {
             let firstChar = sortedUser.keys.sorted()[indexPath.section]
             let users = sortedUser[firstChar]!
             let friend: User = users[indexPath.row]
         
+            print ("prepare")
             destinationVC.friend = friend
         }
     }
