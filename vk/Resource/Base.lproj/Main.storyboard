@@ -482,7 +482,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLN-Eg-3BQ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLN-Eg-3BQ" customClass="FriendsPhotoView" customModule="vk" customModuleProvider="target">
                                 <rect key="frame" x="20" y="76" width="374" height="663"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sEl-NJ-2Cp">
@@ -509,7 +509,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="wWq-Q9-u97"/>
                     <connections>
-                        <outlet property="photoImageView" destination="sEl-NJ-2Cp" id="LKz-QD-lRZ"/>
+                        <outlet property="firstPhotoImageView" destination="sEl-NJ-2Cp" id="rRc-xF-l53"/>
+                        <outlet property="firstPhotoView" destination="XLN-Eg-3BQ" id="bDl-wa-fg0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyt-2I-jDu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

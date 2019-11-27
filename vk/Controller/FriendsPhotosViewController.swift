@@ -10,8 +10,28 @@ import UIKit
 
 class FriendsPhotosViewController: UIViewController {
 
-    @IBOutlet weak var photoImageView: UIImageView!
+
     var friend: User!
+    
+    @IBOutlet weak var firstPhotoView: FriendsPhotoView!
+    @IBOutlet weak var firstPhotoImageView: UIImageView!
+    
+    var i: Int = 0
+    
+    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
+
+        // example task: animate view off screen
+        if (gesture.direction == UISwipeGestureRecognizer.Direction.right) {
+            print("Swipe right")
+            i = i + friend.photos!.count - 1
+            
+        } else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
+            print("Swipe left")
+            i += 1
+        }
+        i = i % friend.photos!.count
+        firstPhotoImageView.image = friend.photos![i]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +39,13 @@ class FriendsPhotosViewController: UIViewController {
         assert(friend != nil)
         
         title = "\(friend.firstName) \(friend.lastName)"
+        
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeRightGesture.direction = UISwipeGestureRecognizer.Direction.right
+        swipeLeftGesture.direction = UISwipeGestureRecognizer.Direction.left
+        firstPhotoView.addGestureRecognizer(swipeRightGesture)
+        firstPhotoView.addGestureRecognizer(swipeLeftGesture)
        
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -27,7 +54,8 @@ class FriendsPhotosViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        photoImageView.image = friend.photos![0]
+        
+        firstPhotoImageView.image = friend.photos![i]
         print ("Will Appear")
     }
     /*

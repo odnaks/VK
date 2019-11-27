@@ -13,8 +13,8 @@ class NewsTableViewController: UITableViewController {
     let news = [
         News(title: "свежая новость", titlePhoto: UIImage(named: "lera2")!,
              contentPhoto: UIImage(named: "lera3")!, countLikes: 39, countComments: 3),
-        News(title: "старая новость", titlePhoto: UIImage(named: "lera4")!,
-             contentPhoto: UIImage(named: "lera5")!, countLikes: 108, countComments: 5)
+        News(title: "старая новость", titlePhoto: UIImage(named: "lera1")!,
+             contentPhoto: UIImage(named: "lera4")!, countLikes: 108, countComments: 5)
         
     ]
     

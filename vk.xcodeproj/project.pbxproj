@@ -26,8 +26,8 @@
 		5E9011162369B9AD006D36E1 /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9011142369B9AD006D36E1 /* AllGroupsTableViewController.swift */; };
 		5E9011172369B9AD006D36E1 /* ListGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9011152369B9AD006D36E1 /* ListGroupTableViewController.swift */; };
 		5E980D48237C1DB5000E2733 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E980D47237C1DB5000E2733 /* NewsCell.xib */; };
+		5EA655F0238D464400501897 /* FriendsPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA655EF238D464300501897 /* FriendsPhotoView.swift */; };
 		5EB44F4023687F3A006B241D /* ListFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB44F3F23687F3A006B241D /* ListFriendsTableViewController.swift */; };
-		5EB44F582369B1EF006B241D /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB44F572369B1EF006B241D /* PhotosCollectionViewController.swift */; };
 		5EB44F5A2369B2BC006B241D /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB44F592369B2BC006B241D /* PhotoCell.swift */; };
 		5EC70A36236DD59700809C76 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC70A35236DD59700809C76 /* PhotoView.swift */; };
 		5EC70A38236DD9CA00809C76 /* PhotoShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC70A37236DD9CA00809C76 /* PhotoShadowView.swift */; };
@@ -56,8 +56,8 @@
 		5E9011142369B9AD006D36E1 /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
 		5E9011152369B9AD006D36E1 /* ListGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListGroupTableViewController.swift; sourceTree = "<group>"; };
 		5E980D47237C1DB5000E2733 /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
+		5EA655EF238D464300501897 /* FriendsPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotoView.swift; sourceTree = "<group>"; };
 		5EB44F3F23687F3A006B241D /* ListFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFriendsTableViewController.swift; sourceTree = "<group>"; };
-		5EB44F572369B1EF006B241D /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		5EB44F592369B2BC006B241D /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		5EC70A35236DD59700809C76 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		5EC70A37236DD9CA00809C76 /* PhotoShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoShadowView.swift; sourceTree = "<group>"; };
@@ -87,6 +87,7 @@
 				5EC70A35236DD59700809C76 /* PhotoView.swift */,
 				5EC7AF5A238552B80031E070 /* DownloadCircleView.swift */,
 				5EC70A37236DD9CA00809C76 /* PhotoShadowView.swift */,
+				5EA655EF238D464300501897 /* FriendsPhotoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -99,7 +100,6 @@
 				5E9011142369B9AD006D36E1 /* AllGroupsTableViewController.swift */,
 				5E9011152369B9AD006D36E1 /* ListGroupTableViewController.swift */,
 				5EB44F3F23687F3A006B241D /* ListFriendsTableViewController.swift */,
-				5EB44F572369B1EF006B241D /* PhotosCollectionViewController.swift */,
 				5E0D48732385CC76001F9E1D /* FriendsPhotosViewController.swift */,
 			);
 			path = Controller;
@@ -236,6 +236,7 @@
 				5E6F7A6C2374FC0B009D872F /* LikeControl.swift in Sources */,
 				5EB44F5A2369B2BC006B241D /* PhotoCell.swift in Sources */,
 				5EB44F4023687F3A006B241D /* ListFriendsTableViewController.swift in Sources */,
+				5EA655F0238D464400501897 /* FriendsPhotoView.swift in Sources */,
 				5E9011132369B991006D36E1 /* Group.swift in Sources */,
 				5E9011162369B9AD006D36E1 /* AllGroupsTableViewController.swift in Sources */,
 				5E9011172369B9AD006D36E1 /* ListGroupTableViewController.swift in Sources */,
@@ -247,7 +248,6 @@
 				5E8C1C2323676E01000C48B9 /* SceneDelegate.swift in Sources */,
 				5E3B23B72369B93600957A1C /* FriendCell.swift in Sources */,
 				5EC70A38236DD9CA00809C76 /* PhotoShadowView.swift in Sources */,
-				5EB44F582369B1EF006B241D /* PhotosCollectionViewController.swift in Sources */,
 				5E453C5F237F09D4003E8291 /* NewsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +392,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MN5SDDPV9R;
 				INFOPLIST_FILE = vk/Info.plist;
@@ -401,6 +402,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Ksenia.vk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -410,6 +412,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MN5SDDPV9R;
 				INFOPLIST_FILE = vk/Info.plist;
@@ -419,6 +422,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Ksenia.vk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
