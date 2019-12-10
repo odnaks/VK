@@ -16,6 +16,8 @@ class FriendsPhotosViewController: UIViewController {
     @IBOutlet weak var firstPhotoView: FriendsPhotoView!
     @IBOutlet weak var firstPhotoImageView: UIImageView!
     
+    let vkService = VKService()
+    
     var i: Int = 0
     
     @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
@@ -46,7 +48,9 @@ class FriendsPhotosViewController: UIViewController {
         swipeLeftGesture.direction = UISwipeGestureRecognizer.Direction.left
         firstPhotoView.addGestureRecognizer(swipeRightGesture)
         firstPhotoView.addGestureRecognizer(swipeLeftGesture)
-       
+        
+        
+        vkService.getPhotos()
     }
     override func viewDidAppear(_ animated: Bool) {
         

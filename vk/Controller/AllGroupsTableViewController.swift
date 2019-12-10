@@ -9,6 +9,7 @@ import UIKit
 
 class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
 
+    let vkService = VKService()
     
     @IBOutlet weak var searchGroups: UISearchBar!
     var isSearch: Bool = false
@@ -22,6 +23,8 @@ class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
         }
         print (searchText)
         newGroups = searchGroups(groups: groups, str: searchText)
+        
+        vkService.searchGroups(str: searchText)
         self.tableView.reloadData()
     }
     

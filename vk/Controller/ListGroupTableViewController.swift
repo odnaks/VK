@@ -9,8 +9,11 @@ import UIKit
 
 class ListGroupTableViewController: UITableViewController, UISearchBarDelegate {
 
+    let vkService = VKService()
+    
     @IBOutlet weak var searchGroups: UISearchBar!
     var isSearch: Bool = false
+
     
     let groups = [
         Group(photo: UIImage(named: "sunset")!, name: "super public page"),
@@ -52,6 +55,8 @@ class ListGroupTableViewController: UITableViewController, UISearchBarDelegate {
             super.viewDidLoad()
             searchGroups.delegate = self
             newGroups = groups
+        
+            vkService.listGroups()
         }
 
         // MARK: - Table view data source

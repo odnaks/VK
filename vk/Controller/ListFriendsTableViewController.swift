@@ -13,6 +13,7 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
     @IBOutlet weak var searchFriends: UISearchBar!
     var isSearch: Bool = false
     
+    let vkService = VKService()
     let friends = [
         User(photo: UIImage(named: "lera")!, firstName: "lera", lastName: "shevtsova",
              photos: [
@@ -83,6 +84,8 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.sortedUser = sort(users: friends)
+        
+        vkService.getFriends()
     }
 
     private func sort(users: [User]) -> [Character: [User]] {
@@ -179,4 +182,6 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         }
     }
 
+    
+    
 }

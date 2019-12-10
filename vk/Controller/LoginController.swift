@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import Foundation
+import Alamofire
+import WebKit
+
 
 class LoginController: UIViewController {
+    
+    @IBOutlet weak var webView: WKWebView!
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var passInput: UITextField!
@@ -25,6 +31,25 @@ class LoginController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         // Присваиваем его UIScrollVIew
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+        
+        
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "oauth.vk.com"
+        urlComponents.path = "/authorize"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: "7240220"),
+            URLQueryItem(name: "display", value: "mobile"),
+            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
+            URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "v", value: "5.68")
+        ]
+        
+        let request = URLRequest(url: urlComponents.url!)
+        
+        webView.load(request)
     }
 
     func animate_rev(){
