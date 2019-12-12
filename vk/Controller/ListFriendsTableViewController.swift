@@ -14,7 +14,7 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
     var isSearch: Bool = false
     
     let vkService = VKService()
-    let friends = [
+    var friends = [
         User(photo: UIImage(named: "lera")!, firstName: "lera", lastName: "shevtsova",
              photos: [
                 UIImage(named: "lera1")!,
@@ -85,7 +85,13 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.sortedUser = sort(users: friends)
         
-        vkService.getFriends()
+        // отправляем запрос для получения друзей
+        vkService.getFriends(){ [weak self] friends in
+            self?.friends = friends
+            DispatchQueue.main.async {
+            self?.tableView.reloadData()
+            }
+        }
     }
 
     private func sort(users: [User]) -> [Character: [User]] {

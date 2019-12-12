@@ -39,6 +39,8 @@ class VKLoginViewController: UIViewController {
         
         webView.load(request)
         
+        
+        
     }
     
 

@@ -8,85 +8,90 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class VKService {
-    // базовый URL сервиса
     let baseUrl = "https://api.vk.com/method"
-//    let apiKey = Session.instance.token
     
-    // метод для загрузки данных, в качестве аргументов получает город
-    func getFriends(){
+    func getFriends(completion: @escaping ([User]) -> Void){
         
-    // путь для получения погоды за 5 дней
         let path = "/friends.get"
-    // параметры, город, единицы измерения градусы, ключ для доступа к сервису
         let parameters: Parameters = [
             "access_token": Session.instance.token,
             "user_id": Session.instance.userId,
             "v": "5.00"
         ]
-        
-    // составляем URL из базового адреса сервиса и конкретного пути к ресурсу
+        // https://api.vk.com/method/friends.get?access_token=91c78b2e94759cf2fef161cd3220a688b42f03c34ce15797b1f8449f2018a120ed76d5ef5258444ea31d6&user_id=566604693&v=5.00
         let url = baseUrl+path
         
-    // делаем запрос
         AF.request(url, method: .get, parameters: parameters).responseJSON { repsonse in
+            switch repsonse.result {
+                case let .success(data):
+                    let json = JSON(data)
+                    print ("---")
+                    print (json["response"]["count"])
+                    print ("---")
+                case .failure(_):
+                    print ("error request")
+            }
+            print ("===")
+//            print(repsonse.value!)
             print(repsonse.value!)
+            print ("===")
         }
     }
     func getPhotos(){
         
-    // путь для получения погоды за 5 дней
         let path = "/photos.getAll"
-    // параметры, город, единицы измерения градусы, ключ для доступа к сервису
         let parameters: Parameters = [
             "access_token": Session.instance.token,
             "owner_id": Session.instance.userId,
             "v": "5.00"
         ]
         
-    // составляем URL из базового адреса сервиса и конкретного пути к ресурсу
         let url = baseUrl+path
         
-    // делаем запрос
         AF.request(url, method: .get, parameters: parameters).responseJSON { repsonse in
             print(repsonse.value!)
         }
     }
     func listGroups(){
         
-    // путь для получения погоды за 5 дней
         let path = "/groups.get"
-    // параметры, город, единицы измерения градусы, ключ для доступа к сервису
         let parameters: Parameters = [
             "access_token": Session.instance.token,
             "user_id": Session.instance.userId,
             "v": "5.00"
         ]
         
-    // составляем URL из базового адреса сервиса и конкретного пути к ресурсу
         let url = baseUrl+path
         
-    // делаем запрос
         AF.request(url, method: .get, parameters: parameters).responseJSON { repsonse in
             print(repsonse.value!)
+            switch repsonse.result {
+                case let .success(data):
+                    let json = JSON(data)
+                    print ("---")
+                    print (json["response"]["count"])
+                    print ("---")
+                case .failure(_):
+                    print ("error request")
+            }
+            
         }
+       
     }
     func searchGroups(str: String){
         
-    // путь для получения погоды за 5 дней
         let path = "/groups.search"
-    // параметры, город, единицы измерения градусы, ключ для доступа к сервису
         let parameters: Parameters = [
             "access_token": Session.instance.token,
             "q": str,
             "v": "5.00"
         ]
         
-    // составляем URL из базового адреса сервиса и конкретного пути к ресурсу
         let url = baseUrl+path
         
-    // делаем запрос
         AF.request(url, method: .get, parameters: parameters).responseJSON { repsonse in
             print(repsonse.value!)
         }

@@ -22,7 +22,8 @@ class NewsTableViewController: UITableViewController {
             super.viewDidLoad()
             tableView.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
             
-        }
+        
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
