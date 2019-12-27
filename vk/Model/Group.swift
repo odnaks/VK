@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 
 class Group {
-    let photo: UIImage?
+    let photoLink: String
     let name: String
     
-    init(photo: UIImage, name: String) {
-        self.photo = photo
+    init(photoLink: String, name: String) {
+        self.photoLink = photoLink
         self.name = name
     }
     init(name: String){
         self.name = name
-        self.photo = nil
+        self.photoLink = ""
     }
 }

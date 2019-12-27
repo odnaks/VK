@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendsPhotosViewController: UIViewController {
 
 
     var friend: User!
+    var photos = [String]()
     
     @IBOutlet weak var firstPhotoView: FriendsPhotoView!
     @IBOutlet weak var firstPhotoImageView: UIImageView!
@@ -25,20 +27,28 @@ class FriendsPhotosViewController: UIViewController {
         // example task: animate view off screen
         if (gesture.direction == UISwipeGestureRecognizer.Direction.right) {
             print("Swipe right")
-            i = i + friend.photos!.count - 1
+            i = i + photos.count - 1
             
         } else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
             print("Swipe left")
             i += 1
         }
-        i = i % friend.photos!.count
-        firstPhotoImageView.image = friend.photos![i]
+        i = i % photos.count
+        firstPhotoImageView.kf.setImage(with: URL(string: photos[i]))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         assert(friend != nil)
+        
+        print (friend!.id)
+        vkService.getPhotos(id: friend!.id){ [weak self] photos in
+            print ("ok")
+            self?.photos = photos
+            self?.firstPhotoImageView.kf.setImage(with: URL(string: photos[0]))
+        }
         
         title = "\(friend.firstName) \(friend.lastName)"
         
@@ -49,8 +59,7 @@ class FriendsPhotosViewController: UIViewController {
         firstPhotoView.addGestureRecognizer(swipeRightGesture)
         firstPhotoView.addGestureRecognizer(swipeLeftGesture)
         
-        
-        vkService.getPhotos()
+    
     }
     override func viewDidAppear(_ animated: Bool) {
         
@@ -58,8 +67,12 @@ class FriendsPhotosViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
-        firstPhotoImageView.image = friend.photos![i]
+
+//        print (photos.count)
+//        if (photos.count > 0) {
+//            firstPhotoImageView.kf.setImage(with: URL(string: photos[i]))
+//        }
+
         print ("Will Appear")
     }
     /*

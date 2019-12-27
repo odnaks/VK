@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
 
     let vkService = VKService()
+    var groups = [Group]()
+    var newGroups:[Group] = []
     
     @IBOutlet weak var searchGroups: UISearchBar!
     var isSearch: Bool = false
@@ -24,18 +27,15 @@ class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
         print (searchText)
         newGroups = searchGroups(groups: groups, str: searchText)
         
-        vkService.searchGroups(str: searchText)
+        vkService.searchGroups(str: searchText){ [weak self] groups in
+            self?.groups = groups
+            self?.newGroups = groups
+            self?.tableView.reloadData()
+
+        }
         self.tableView.reloadData()
     }
     
-    let groups = [
-        Group(photo: UIImage(named: "white")!, name: "white public page"),
-        Group(photo: UIImage(named: "yellow")!, name: "yellow public page"),
-        Group(photo: UIImage(named: "blue")!, name: "blue public page"),
-        Group(photo: UIImage(named: "dark")!, name: "dark public page"),
-        Group(photo: UIImage(named: "grey")!, name: "grey public page")
-    ]
-    var newGroups:[Group] = []
 
     func searchGroups(groups: [Group], str: String) -> [Group] {
         var newGroups: [Group] = []
@@ -51,6 +51,7 @@ class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
             super.viewDidLoad()
 
         searchGroups.delegate = self
+            
             // Uncomment the following line to preserve selection between presentations
             // self.clearsSelectionOnViewWillAppear = false
 
@@ -83,19 +84,19 @@ class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
         }
 
         let name: String
-        let photo: UIImage?
+        let photo: String
         if (isSearch)
         {
             name = newGroups[indexPath.row].name
-            photo = newGroups[indexPath.row].photo
+            photo = newGroups[indexPath.row].photoLink
         }
         else {
             name = groups[indexPath.row].name
-            photo = groups[indexPath.row].photo
+            photo = groups[indexPath.row].photoLink
         }
         
         cell.titleLabel.text = name
-        cell.photoImageView.image = photo
+        cell.photoImageView.kf.setImage(with: URL(string: photo))
 
         return cell
     }

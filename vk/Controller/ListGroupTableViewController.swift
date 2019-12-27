@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ListGroupTableViewController: UITableViewController, UISearchBarDelegate {
 
@@ -15,16 +16,7 @@ class ListGroupTableViewController: UITableViewController, UISearchBarDelegate {
     var isSearch: Bool = false
 
     
-    let groups = [
-        Group(photo: UIImage(named: "sunset")!, name: "super public page"),
-        Group(photo: UIImage(named: "sunset")!, name: "super public page"),
-        Group(photo: UIImage(named: "sunset")!, name: "super public page"),
-        Group(photo: UIImage(named: "sunset")!, name: "super public page"),
-        Group(photo: UIImage(named: "sunset")!, name: "super public page"),
-        Group(photo: UIImage(named: "sunset")!, name: "super public page"),
-        Group(photo: UIImage(named: "sunset")!, name: "super public page"),
-        Group(photo: UIImage(named: "sunset")!, name: "super public page")
-    ]
+    let groups = [Group]()
 
     var newGroups:[Group] = []
     
@@ -56,7 +48,10 @@ class ListGroupTableViewController: UITableViewController, UISearchBarDelegate {
             searchGroups.delegate = self
             newGroups = groups
         
-            vkService.listGroups()
+            vkService.listGroups(){ [weak self] groups in
+                self?.newGroups = groups
+                self?.tableView.reloadData()
+            }
         }
 
         // MARK: - Table view data source
@@ -77,9 +72,8 @@ class ListGroupTableViewController: UITableViewController, UISearchBarDelegate {
             }
 
             let name = newGroups[indexPath.row].name
-            let photo = newGroups[indexPath.row].photo
             cell.titleLabel.text = name
-            cell.photoImageView.image = photo
+            cell.photoImageView.kf.setImage(with: URL(string: newGroups[indexPath.row].photoLink))
 
             return cell
         }

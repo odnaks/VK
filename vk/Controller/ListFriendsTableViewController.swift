@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate {
 
@@ -14,38 +15,7 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
     var isSearch: Bool = false
     
     let vkService = VKService()
-    var friends = [
-        User(photo: UIImage(named: "lera")!, firstName: "lera", lastName: "shevtsova",
-             photos: [
-                UIImage(named: "lera1")!,
-                 UIImage(named: "lera2")!,
-                 UIImage(named: "lera3")!,
-                 UIImage(named: "lera4")!
-            ]
-        ),
-        User(photo: UIImage(named: "roma1")!, firstName: "roma", lastName: "politov",
-             photos: [
-                UIImage(named: "roma3")!,
-                 UIImage(named: "roma2")!
-            ]
-        ),
-        User(photo: UIImage(named: "roma1")!, firstName: "ne_roma", lastName: "politov",
-             photos: [
-                UIImage(named: "roma1")!,
-                 UIImage(named: "roma2")!,
-                 UIImage(named: "roma3")!,
-                 UIImage(named: "roma4")!
-            ]
-        ),
-        User(photo: UIImage(named: "dasha")!, firstName: "даруа", lastName: "катава",
-             photos: [
-                UIImage(named: "dasha")!,
-                 UIImage(named: "dasha2")!,
-                 UIImage(named: "dasha3")!,
-                 UIImage(named: "dasha4")!
-            ]
-        )
-    ]
+    var friends = [User]()
     
 //    var seachedFrieds: [User] = []
     var sortedUser = [Character: [User]]()
@@ -88,10 +58,12 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         // отправляем запрос для получения друзей
         vkService.getFriends(){ [weak self] friends in
             self?.friends = friends
-            DispatchQueue.main.async {
+            self?.sortedUser = self!.sort(users: friends)
             self?.tableView.reloadData()
-            }
+
         }
+//        vkService.getPhotos(id: "1")
+        
     }
 
     private func sort(users: [User]) -> [Character: [User]] {
@@ -158,7 +130,7 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         
         cell.firstNameLabel.text = user.firstName
         cell.lastNameLabel.text = user.lastName
-        cell.photoImageView.image = user.photo
+        cell.photoImageView.kf.setImage(with: URL(string: user.photoLink))
         
         return cell
     }
