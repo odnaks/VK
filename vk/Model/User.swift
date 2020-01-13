@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class User {
     let photo: UIImage?
@@ -43,3 +44,11 @@ class User {
         self.id = "1"
     }
 }
+
+
+//class User: Object, Decodable {
+//    @objc dynamic var photoLink = "https://sun1-83.userapi.com/c836333/v836333001/31189/8To0r3d-6iQ.jpg"
+//    @objc dynamic var firstName = "Pavel"
+//    @objc dynamic var lastName = "Durov"
+//    @objc dynamic var id = "1"
+//}

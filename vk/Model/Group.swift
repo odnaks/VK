@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class Group {
     let photoLink: String
@@ -21,3 +22,9 @@ class Group {
         self.photoLink = ""
     }
 }
+
+//class Group: Object, Decodable {
+//    @objc dynamic var photoLink = "https://sun1-83.userapi.com/c836333/v836333001/31189/8To0r3d-6iQ.jpg"
+//    @objc dynamic var name = "Pavel Durov"
+//
+//}
