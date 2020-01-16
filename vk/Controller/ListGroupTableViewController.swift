@@ -11,7 +11,8 @@ import RealmSwift
 
 class ListGroupTableViewController: UITableViewController, UISearchBarDelegate {
 
-    let vkService = VKService()
+    private let vkService = VKService()
+    private var notificationToken: NotificationToken?
     
     @IBOutlet weak var searchGroups: UISearchBar!
     var isSearch: Bool = false
@@ -58,6 +59,27 @@ class ListGroupTableViewController: UITableViewController, UISearchBarDelegate {
                 try? RealmService.save(items: groups, configuration: RealmService.deleteIfMigration, update: .all)
                 self?.tableView.reloadData()
             }
+        
+            notificationToken = groups.observe { [weak self] changes in
+                        guard let self = self else { return }
+                        switch changes {
+                        case .initial:
+                            break
+                        case let .update(_, deletions, insertions, modifications):
+                            self.tableView.beginUpdates()
+                            self.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                            self.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                            self.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                            print (deletions)
+                            print (insertions)
+                            print (modifications)
+                            self.tableView.endUpdates()
+                        case .error(let error):
+                            print(error)
+                            break
+                        }
+                    }
+            
         }
 
         // MARK: - Table view data source
