@@ -8,12 +8,15 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class FriendsPhotosViewController: UIViewController {
 
 
     var friend: User!
-    var photos = [String]()
+//    var photos = [String]()
+    private lazy var photos: Results<Photo> = try! Realm(configuration: RealmService.deleteIfMigration).objects(Photo.self).filter("ownerId == %@", friend!.id)
+    
     
     @IBOutlet weak var firstPhotoView: FriendsPhotoView!
     @IBOutlet weak var firstPhotoImageView: UIImageView!
@@ -34,7 +37,7 @@ class FriendsPhotosViewController: UIViewController {
             i += 1
         }
         i = i % photos.count
-        firstPhotoImageView.kf.setImage(with: URL(string: photos[i]))
+        firstPhotoImageView.kf.setImage(with: URL(string: photos[i].photoUrl))
     }
     
     override func viewDidLoad() {
@@ -46,8 +49,10 @@ class FriendsPhotosViewController: UIViewController {
         print (friend!.id)
         vkService.getPhotos(id: friend!.id){ [weak self] photos in
             print ("ok")
-            self?.photos = photos
-            self?.firstPhotoImageView.kf.setImage(with: URL(string: photos[0]))
+//            self?.photos = photos.photos
+            try? RealmService.save(items: photos, configuration: RealmService.deleteIfMigration, update: .all)
+            
+            self?.firstPhotoImageView.kf.setImage(with: URL(string: photos[0].photoUrl))
         }
         
         title = "\(friend.firstName) \(friend.lastName)"

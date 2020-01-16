@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 import Kingfisher
 
 class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate {
@@ -15,7 +16,10 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
     var isSearch: Bool = false
     
     let vkService = VKService()
-    var friends = [User]()
+    //var friends = [User]()
+    
+    
+    private lazy var friends: Results<User> = try! Realm(configuration: RealmService.deleteIfMigration).objects(User.self)
     
 //    var seachedFrieds: [User] = []
     var sortedUser = [Character: [User]]()
@@ -32,18 +36,18 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         return newFriends
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if (searchText != ""){
-            isSearch = true
-            self.sortedUser = sort(users: searchFrieds(friends: friends, str: searchText))
-        }
-        else{
-            isSearch = false
-            self.sortedUser = sort(users: friends)
-        }
-        print (searchText)
-        self.tableView.reloadData()
-    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if (searchText != ""){
+//            isSearch = true
+//            self.sortedUser = sort(users: searchFrieds(friends: friends, str: searchText))
+//        }
+//        else{
+//            isSearch = false
+//            self.sortedUser = sort(users: friends)
+//        }
+//        print (searchText)
+//        self.tableView.reloadData()
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +57,12 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.sortedUser = sort(users: friends)
+//        self.sortedUser = sort(users: friends)
         
         // отправляем запрос для получения друзей
         vkService.getFriends(){ [weak self] friends in
-            self?.friends = friends
+//            self?.friends = friends
+            try? RealmService.save(items: friends, configuration: RealmService.deleteIfMigration, update: .all)
             self?.sortedUser = self!.sort(users: friends)
             self?.tableView.reloadData()
 

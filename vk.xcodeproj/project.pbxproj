@@ -34,6 +34,8 @@
 		5EC70A36236DD59700809C76 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC70A35236DD59700809C76 /* PhotoView.swift */; };
 		5EC70A38236DD9CA00809C76 /* PhotoShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC70A37236DD9CA00809C76 /* PhotoShadowView.swift */; };
 		5EC7AF5B238552B80031E070 /* DownloadCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7AF5A238552B80031E070 /* DownloadCircleView.swift */; };
+		5EC9B68023D0CAFB00B6A9AD /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9B67F23D0CAFB00B6A9AD /* Photo.swift */; };
+		5EC9B68223D0D75100B6A9AD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9B68123D0D75100B6A9AD /* RealmService.swift */; };
 		DDCB75BA03EF6FF872A56EDE /* Pods_vk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC2427FAC688B3FFB76F56C /* Pods_vk.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +72,8 @@
 		5EC70A35236DD59700809C76 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		5EC70A37236DD9CA00809C76 /* PhotoShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoShadowView.swift; sourceTree = "<group>"; };
 		5EC7AF5A238552B80031E070 /* DownloadCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadCircleView.swift; sourceTree = "<group>"; };
+		5EC9B67F23D0CAFB00B6A9AD /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		5EC9B68123D0D75100B6A9AD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,10 +165,12 @@
 			isa = PBXGroup;
 			children = (
 				5E9011112369B991006D36E1 /* Group.swift */,
+				5EC9B67F23D0CAFB00B6A9AD /* Photo.swift */,
 				5E9011102369B991006D36E1 /* User.swift */,
 				5E453C5C237EFEB2003E8291 /* News.swift */,
 				5E781FA7239B13010078E376 /* Session.swift */,
 				5E0A171E239F9AC7005924EC /* VKService.swift */,
+				5EC9B68123D0D75100B6A9AD /* RealmService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EC9B68023D0CAFB00B6A9AD /* Photo.swift in Sources */,
 				5E0A171F239F9AC7005924EC /* VKService.swift in Sources */,
 				5EC7AF5B238552B80031E070 /* DownloadCircleView.swift in Sources */,
 				5E196F1B23759BFD00A6429E /* LikeExtension.swift in Sources */,
@@ -325,6 +332,7 @@
 				5E3B23B72369B93600957A1C /* FriendCell.swift in Sources */,
 				5EC70A38236DD9CA00809C76 /* PhotoShadowView.swift in Sources */,
 				5E453C5F237F09D4003E8291 /* NewsCell.swift in Sources */,
+				5EC9B68223D0D75100B6A9AD /* RealmService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

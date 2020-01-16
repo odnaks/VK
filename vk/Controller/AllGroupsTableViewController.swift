@@ -27,12 +27,12 @@ class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
         print (searchText)
         newGroups = searchGroups(groups: groups, str: searchText)
         
-        vkService.searchGroups(str: searchText){ [weak self] groups in
-            self?.groups = groups
-            self?.newGroups = groups
-            self?.tableView.reloadData()
-
-        }
+//        vkService.searchGroups(str: searchText){ [weak self] groups in
+//            self?.groups = groups
+//            self?.newGroups = groups
+//            self?.tableView.reloadData()
+//
+//        }
         self.tableView.reloadData()
     }
     

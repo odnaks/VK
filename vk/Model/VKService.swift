@@ -47,7 +47,7 @@ class VKService {
 //            print ("===")
         }
     }
-    func getPhotos(id: String, completion: @escaping ([String]) -> Void){
+    func getPhotos(id: String, completion: @escaping ([Photo]) -> Void){
         
         let path = "/photos.getAll"
         let parameters: Parameters = [
@@ -63,10 +63,13 @@ class VKService {
                         case let .success(data):
                             print ("success")
                             let json = JSON(data)
-                            var photos:[String] = []
+                            var photos = [Photo]()
                             for item in json["response"]["items"] {
-                                let strUrl: String = item.1["photo_807"].stringValue
-                                photos.append(strUrl)
+                                print (item)
+                                let id: String = item.1["id"].stringValue
+                                let ownerId: String = item.1["owner_id"].stringValue
+                                let photoUrl: String = item.1["photo_807"].stringValue
+                                photos.append(Photo(id: id, photoUrl: photoUrl, ownerId: ownerId ))
                                 completion(photos)
                             }
                         case .failure(_):
@@ -97,9 +100,11 @@ class VKService {
                     let json = JSON(data)
                     var groups:[Group] = []
                     for item in json["response"]["items"] {
+//                        print (item)
+                        let id: String = item.1["id"].stringValue
                         let name: String = item.1["name"].stringValue
                         let url: String = item.1["photo_100"].stringValue
-                        groups.append(Group(photoLink: url, name: name))
+                        groups.append(Group(photoLink: url, name: name, id: id))
                         completion(groups)
                     }
                 case .failure(_):
@@ -109,33 +114,34 @@ class VKService {
         }
        
     }
-    func searchGroups(str: String, completion: @escaping ([Group]) -> Void){
-        
-        let path = "/groups.search"
-        let parameters: Parameters = [
-            "access_token": Session.instance.token,
-            "q": str,
-            "v": "5.00"
-        ]
-        
-        let url = baseUrl+path
-        
-        AF.request(url, method: .get, parameters: parameters).responseJSON { repsonse in
-            print(repsonse.value!)
-            switch repsonse.result {
-                case let .success(data):
-                    print ("success")
-                    let json = JSON(data)
-                    var groups:[Group] = []
-                    for item in json["response"]["items"] {
-                        let name: String = item.1["name"].stringValue
-                        let url: String = item.1["photo_100"].stringValue
-                        groups.append(Group(photoLink: url, name: name))
-                        completion(groups)
-                    }
-                case .failure(_):
-                    print ("error request")
-            }
-        }
-    }
+//    func searchGroups(str: String, completion: @escaping ([Group]) -> Void){
+//
+//        let path = "/groups.search"
+//        let parameters: Parameters = [
+//            "access_token": Session.instance.token,
+//            "q": str,
+//            "v": "5.00"
+//        ]
+//
+//        let url = baseUrl+path
+//
+//        AF.request(url, method: .get, parameters: parameters).responseJSON { repsonse in
+//            print(repsonse.value!)
+//            switch repsonse.result {
+//                case let .success(data):
+//                    print ("success")
+//                    let json = JSON(data)
+//                    var groups:[Group] = []
+//                    for item in json["response"]["items"] {
+//                        let id: String = item.1["id"].stringValue
+//                        let name: String = item.1["name"].stringValue
+//                        let url: String = item.1["photo_100"].stringValue
+//                        groups.append(Group(photoLink: url, name: name, id: id))
+//                        completion(groups)
+//                    }
+//                case .failure(_):
+//                    print ("error request")
+//            }
+//        }
+//    }
 }
