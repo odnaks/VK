@@ -11,8 +11,8 @@ import Kingfisher
 class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
 
     let vkService = VKService()
-    var groups = [Group]()
-    var newGroups:[Group] = []
+    var groups = [GroupNotRealm]()
+    var newGroups:[GroupNotRealm] = []
     
     @IBOutlet weak var searchGroups: UISearchBar!
     var isSearch: Bool = false
@@ -27,18 +27,18 @@ class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
         print (searchText)
         newGroups = searchGroups(groups: groups, str: searchText)
         
-//        vkService.searchGroups(str: searchText){ [weak self] groups in
-//            self?.groups = groups
-//            self?.newGroups = groups
-//            self?.tableView.reloadData()
-//
-//        }
+        vkService.searchGroups(str: searchText){ [weak self] groups in
+            self?.groups = groups
+            self?.newGroups = groups
+            self?.tableView.reloadData()
+
+        }
         self.tableView.reloadData()
     }
     
 
-    func searchGroups(groups: [Group], str: String) -> [Group] {
-        var newGroups: [Group] = []
+    func searchGroups(groups: [GroupNotRealm], str: String) -> [GroupNotRealm] {
+        var newGroups: [GroupNotRealm] = []
         for group in groups {
             if group.name.lowercased().contains(str.lowercased()){
                 newGroups.append(group)

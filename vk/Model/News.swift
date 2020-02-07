@@ -11,18 +11,34 @@ import UIKit
 
 class News {
     let title: String
-    let titlePhoto: UIImage?
-    let contentPhoto: UIImage?
-    let countLikes: Int
-    let countComments: Int
+    let titlePhotoLink: String
+    let content: String
+    let contentPhotoLink: String
+    let countLikes: String
+    let countComments: String
+    let countReposts: String
     
-    init(title: String, titlePhoto: UIImage, contentPhoto: UIImage,
-         countLikes: Int, countComments: Int) {
+    init(title: String, titlePhotoLink: String, content: String, contentPhotoLink: String,
+         countLikes: String, countComments: String, countReposts: String) {
         
         self.title = title
-        self.titlePhoto = titlePhoto
-        self.contentPhoto = contentPhoto
+        self.titlePhotoLink = titlePhotoLink
+        self.content = content
+        self.contentPhotoLink = contentPhotoLink
         self.countLikes = countLikes
         self.countComments = countComments
+        self.countReposts = countReposts
+    }
+    init(title: String, titlePhotoLink: String, content: String,
+         countLikes: String, countComments: String, countReposts: String) {
+        
+        self.title = title
+        self.titlePhotoLink = titlePhotoLink
+        self.content = content
+        self.contentPhotoLink = ""
+        self.countLikes = countLikes
+        self.countComments = countComments
+        self.countReposts = countReposts
     }
 }
+

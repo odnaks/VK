@@ -10,6 +10,6 @@ import Foundation
 import UIKit
 
 class NewsCellText: UITableViewCell {
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var content: UILabel!
     
 }
