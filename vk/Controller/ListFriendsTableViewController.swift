@@ -17,14 +17,11 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
     
     private let vkService = VKService()
     private var notificationToken: NotificationToken?
-    //var friends = [User]()
     
     
     private lazy var friends: Results<User> = try! Realm(configuration: RealmService.deleteIfMigration).objects(User.self)
     
-//    var seachedFrieds: [User] = []
     var sortedUser = [Character: [User]]()
-    
     func searchFrieds(friends: [User], str: String) -> [User]{
         var newFriends: [User] = []
         
@@ -37,32 +34,10 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         return newFriends
     }
     
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if (searchText != ""){
-//            isSearch = true
-//            self.sortedUser = sort(users: searchFrieds(friends: friends, str: searchText))
-//        }
-//        else{
-//            isSearch = false
-//            self.sortedUser = sort(users: friends)
-//        }
-//        print (searchText)
-//        self.tableView.reloadData()
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchFriends.delegate = self
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-//        self.sortedUser = sort(users: friends)
-        
-        // отправляем запрос для получения друзей
         vkService.getFriends(){ [weak self] friends in
-//            self?.friends = friends
             try? RealmService.save(items: friends, configuration: RealmService.deleteIfMigration, update: .all)
             self?.sortedUser = self!.sort(users: friends)
             self?.tableView.reloadData()
@@ -75,22 +50,14 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
                 break
             case let .update(_, deletions, insertions, modifications):
                 self.tableView.reloadData()
-//                self.tableView.beginUpdates()
-//                self.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-//                self.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-//                self.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                 print (deletions)
                 print (insertions)
                 print (modifications)
-//                self.tableView.endUpdates()
             case .error(let error):
                 print(error)
                 break
             }
         }
-        
-        
-//        vkService.getPhotos(id: "1")
         
     }
 
@@ -111,22 +78,14 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         
         return userDict
     }
-    
-    // MARK: - Table view data source
+
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return sortedUser.keys.count
     }
-
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let firstChar = sortedUser.keys.sorted()[section]
-//        return String(firstChar)
-//    }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let vw = UIView()
-        //vw.backgroundColor = UIColor.red
         vw.backgroundColor = tableView.backgroundColor!.withAlphaComponent(0.5)
 
         let label = UILabel(frame: CGRect(x: 5, y: 0, width: 200, height: 30))
@@ -162,18 +121,6 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         
         return cell
     }
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "Show Forecast",
-//            let destinationVC = segue.destination as? ForecastController,
-//            let indexPath = tableView.indexPathForSelectedRow {
-//            let cityname = cities[indexPath.row].name
-//            destinationVC.title = cityname
-//        } else if segue.identifier == "Show All Cities",
-//            let destinationVC = segue.destination as? AllCitiesController {
-//            destinationVC.headerText = "Some text"
-//        }
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPhotos",
@@ -188,6 +135,4 @@ class ListFriendsTableViewController: UITableViewController, UISearchBarDelegate
         }
     }
 
-    
-    
 }

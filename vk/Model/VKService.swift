@@ -42,9 +42,6 @@ class VKService {
                 case .failure(_):
                     print ("error request")
             }
-//            print ("===")
-//            print(repsonse.value!)
-//            print ("===")
         }
     }
     func getPhotos(id: String, completion: @escaping ([Photo]) -> Void){
@@ -75,9 +72,6 @@ class VKService {
                         case .failure(_):
                             print ("error request")
                     }
-//                    print ("===")
-//                    print(repsonse.value!)
-//                    print ("===")
                 }
     }
     func getNews(completion: @escaping ([News]) -> Void){
@@ -96,11 +90,9 @@ class VKService {
                 switch repsonse.result {
                     case let .success(data):
                         let json = JSON(data)
-                        print (json)
                         var news:[News] = []
                         var sourceName = [String: String]()
                         var sourcePhotoLink = [String: String]()
-                        
                         
                         let dispatchGroup = DispatchGroup()
                         DispatchQueue.global().async(group: dispatchGroup) {
@@ -151,9 +143,6 @@ class VKService {
                     case .failure(_):
                         print ("error request")
                 }
-    //            print ("===")
-    //            print(repsonse.value!)
-    //            print ("===")
             }
         }
     func listGroups(completion: @escaping ([Group]) -> Void){
@@ -176,7 +165,6 @@ class VKService {
                     let json = JSON(data)
                     var groups:[Group] = []
                     for item in json["response"]["items"] {
-//                        print (item)
                         let id: String = item.1["id"].stringValue
                         let name: String = item.1["name"].stringValue
                         let url: String = item.1["photo_100"].stringValue
@@ -209,7 +197,6 @@ class VKService {
                     let json = JSON(data)
                     var groups:[GroupNotRealm] = []
                     for item in json["response"]["items"] {
-//                        let id: String = item.1["id"].stringValue
                         let name: String = item.1["name"].stringValue
                         let url: String = item.1["photo_100"].stringValue
                         groups.append(GroupNotRealm(photoLink: url, name: name))

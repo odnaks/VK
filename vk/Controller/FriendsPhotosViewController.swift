@@ -14,9 +14,7 @@ class FriendsPhotosViewController: UIViewController {
 
 
     var friend: User!
-//    var photos = [String]()
     private lazy var photos: Results<Photo> = try! Realm(configuration: RealmService.deleteIfMigration).objects(Photo.self).filter("ownerId == %@", friend!.id)
-    
     
     @IBOutlet weak var firstPhotoView: FriendsPhotoView!
     @IBOutlet weak var firstPhotoImageView: UIImageView!
@@ -42,16 +40,11 @@ class FriendsPhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         assert(friend != nil)
-        
         print (friend!.id)
         vkService.getPhotos(id: friend!.id){ [weak self] photos in
-            print ("ok")
-//            self?.photos = photos.photos
             try? RealmService.save(items: photos, configuration: RealmService.deleteIfMigration, update: .all)
-            
             self?.firstPhotoImageView.kf.setImage(with: URL(string: photos[0].photoUrl))
         }
         
@@ -63,31 +56,7 @@ class FriendsPhotosViewController: UIViewController {
         swipeLeftGesture.direction = UISwipeGestureRecognizer.Direction.left
         firstPhotoView.addGestureRecognizer(swipeRightGesture)
         firstPhotoView.addGestureRecognizer(swipeLeftGesture)
-        
     
     }
-    override func viewDidAppear(_ animated: Bool) {
-        
-        print ("Did Appear")
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-
-//        print (photos.count)
-//        if (photos.count > 0) {
-//            firstPhotoImageView.kf.setImage(with: URL(string: photos[i]))
-//        }
-
-        print ("Will Appear")
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

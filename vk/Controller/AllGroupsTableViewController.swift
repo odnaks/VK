@@ -49,28 +49,15 @@ class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
             super.viewDidLoad()
-
-        searchGroups.delegate = self
-            
-            // Uncomment the following line to preserve selection between presentations
-            // self.clearsSelectionOnViewWillAppear = false
-
-            // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-            // self.navigationItem.rightBarButtonItem = self.editButtonItem
+            searchGroups.delegate = self
         }
 
-        // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
-        if (isSearch)
-        {
+        if (isSearch){
             return newGroups.count
         }
         else {
@@ -85,8 +72,7 @@ class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
 
         let name: String
         let photo: String
-        if (isSearch)
-        {
+        if (isSearch){
             name = newGroups[indexPath.row].name
             photo = newGroups[indexPath.row].photoLink
         }

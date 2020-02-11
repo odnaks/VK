@@ -8,7 +8,6 @@
 
 import UIKit
 
-//@IBDesignable
 class PhotoShadowView: UIView {
 
      override func draw(_ rect: CGRect) {

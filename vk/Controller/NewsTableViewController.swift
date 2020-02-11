@@ -13,23 +13,20 @@ class NewsTableViewController: UITableViewController {
 
     let vkService = VKService()
 //    let news = [
-//        News(title: "свежая новость", titlePhoto: UIImage(named: "TitlePhoto")!, content: "hiiiiiiiiiiii",
+//        News(title: "свежая новость", titlePhoto: UIImage(named: "TitlePhoto")!, content: "content",
 //             contentPhoto: UIImage(named: "ContentPhoto")!, countLikes: "39", countComments: "3", countReposts: "222"),
-//        News(title: "старая новость", titlePhoto: UIImage(named: "TitlePhoto")!, content: "helloy",
+//        News(title: "старая новость", titlePhoto: UIImage(named: "TitlePhoto")!, content: "content",
 //             contentPhoto: UIImage(named: "ContentPhoto")!, countLikes: "108", countComments: "5", countReposts: "10")
 //
 //    ]
-    
     var news = [News]()
     
     override func viewDidLoad() {
             super.viewDidLoad()
-//            tableView.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
             tableView.register(UINib(nibName: "NewsCellTitle", bundle: nil), forCellReuseIdentifier: "NewsCellTitle")
             tableView.register(UINib(nibName: "NewsCellText", bundle: nil), forCellReuseIdentifier: "NewsCellText")
             tableView.register(UINib(nibName: "NewsCellImage", bundle: nil), forCellReuseIdentifier: "NewsCellImage")
             tableView.register(UINib(nibName: "NewsCellBottom", bundle: nil), forCellReuseIdentifier: "NewsCellBottom")
-        
          
             vkService.getNews(){ [weak self] news in
                 self?.news = news
@@ -62,7 +59,6 @@ class NewsTableViewController: UITableViewController {
         if (indexPath.row == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellTitle", for: indexPath) as! NewsCellTitle
             cell.label.text = title
-//            cell.photoImageView.image = titlePhoto
             cell.photoImageView.kf.setImage(with: URL(string: titlePhotoLink))
             return cell
         }

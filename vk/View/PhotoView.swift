@@ -8,12 +8,10 @@
 
 import UIKit
 
-//@IBDesignable
 class PhotoView: UIView {
 
     @objc func imageTapped()
     {
-//        let tappedImage = tapGestureRecognizer.view as! UIImageView
 
         print ("image tapped")
         UIView.animate(withDuration: 0.5,
@@ -30,7 +28,6 @@ class PhotoView: UIView {
             self.transform = CGAffineTransform(scaleX: 1, y: 1)
             })
         })
-        // Your action
     }
     
     
@@ -41,7 +38,6 @@ class PhotoView: UIView {
         
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        //        imageView.isUserInteractionEnabled = true
         self.addGestureRecognizer(tapGestureRecognizer)
     }
     

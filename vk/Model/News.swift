@@ -29,16 +29,5 @@ class News {
         self.countComments = countComments
         self.countReposts = countReposts
     }
-    init(title: String, titlePhotoLink: String, content: String,
-         countLikes: String, countComments: String, countReposts: String) {
-        
-        self.title = title
-        self.titlePhotoLink = titlePhotoLink
-        self.content = content
-        self.contentPhotoLink = ""
-        self.countLikes = countLikes
-        self.countComments = countComments
-        self.countReposts = countReposts
-    }
 }
 
